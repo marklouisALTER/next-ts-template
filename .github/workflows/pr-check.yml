@@ -17,15 +17,15 @@ jobs:  # ito pang group ng jobs specify to kung ano mga gagawin
               uses: actions/setup-node@v4
               with:   
                 node-version: '22'
-                cache: 'pnpm'
-                cache-dependency-path: '**/pnpm-lock.yaml'
+                # cache: 'pnpm'
+                # cache-dependency-path: '**/pnpm-lock.yaml'
   
                 
             - name: Setup pnpm (install pnpm on runner)
               uses: pnpm/action-setup@v2
               with:
                 version: 8.10.0
-                
+
             # - name: Enable corepack & activate pnpm
             #   run: |
             #     corepack enable 
@@ -38,7 +38,7 @@ jobs:  # ito pang group ng jobs specify to kung ano mga gagawin
               # typescript
             - name: Type check (Typescript)
               run: pnpm -w run typecheck
-            
+
               # checking the lint 
             - name: lint
               run: pnpm -w run lint
