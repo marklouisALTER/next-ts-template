@@ -2,3 +2,6 @@ ignoredBuiltDependencies:
   - '@tailwindcss/oxide'
   - sharp
   - unrs-resolver
+packages:
+  - apps/*          # or whatever folders contain your apps
+  - packages/*      # or libs, services, etc.
