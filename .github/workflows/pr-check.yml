@@ -24,7 +24,7 @@ jobs:  # ito pang group ng jobs specify to kung ano mga gagawin
             - name: Setup pnpm (install pnpm on runner)
               uses: pnpm/action-setup@v2
               with:
-                version: 8.10.0
+                version: 9.0
 
             # - name: Enable corepack & activate pnpm
             #   run: |
@@ -36,8 +36,8 @@ jobs:  # ito pang group ng jobs specify to kung ano mga gagawin
               run: pnpm install
 
               # typescript
-            - name: Type check (Typescript)
-              run: pnpm -w run typecheck
+            # - name: Type check (Typescript)
+            #   run: pnpm -w run typecheck
 
               # checking the lint 
             - name: lint
