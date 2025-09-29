@@ -1,0 +1,40 @@
+name: PR Checkpoint
+run-name: ${{ github.actor }} is creating PR
+on: 
+    pull_request:
+        types: [opened, synchronize, reopened]
+    push: 
+        branches: 
+            - main
+jobs:
+    type-check:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup Node (pnpm with cache)
+              uses: actions/setup-node@v4
+              with: 
+                node-version: '22'
+                cache: 'pnpm'
+                cache-dependency-path: '**/pnpm-locl.yaml'
+             
+            - name: Enable corepack & activate pnpm
+              run: |
+                corepack enable
+                # pick a pnpm version you want; optional: use 'latest'
+                corepack prepare pnpm@8.10.0 --activate
+            
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
+
+            - name: Type check (Typescript)
+              run: pnpm run typecheck
+            
+            - name: lint
+              run: pnpm run lint
+
+            - name: Build
+              if: ${{ success() }}
+              run: pnpm build
