@@ -18,7 +18,7 @@ jobs:  # ito pang group ng jobs specify to kung ano mga gagawin
               with:   
                 node-version: '22'
                 cache: 'pnpm'
-                cache-dependency-path: '**/pnpm-locl.yaml'
+                cache-dependency-path: '**/pnpm-lock.yaml'
              
             - name: Enable corepack & activate pnpm
               run: |
@@ -31,12 +31,12 @@ jobs:  # ito pang group ng jobs specify to kung ano mga gagawin
 
               # typescript
             - name: Type check (Typescript)
-              run: pnpm run typecheck
+              run: pnpm -w run typecheck
             
               # checking the lint 
             - name: lint
-              run: pnpm run lint
+              run: pnpm -w run lint
 
             - name: Build
               if: ${{ success() }}
-              run: pnpm build
+              run: pnpm -w run build
