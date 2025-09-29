@@ -19,12 +19,18 @@ jobs:  # ito pang group ng jobs specify to kung ano mga gagawin
                 node-version: '22'
                 cache: 'pnpm'
                 cache-dependency-path: '**/pnpm-lock.yaml'
-             
-            - name: Enable corepack & activate pnpm
-              run: |
-                corepack enable
-                # pick a pnpm version you want; optional: use 'latest'
-                corepack prepare pnpm@8.10.0 --activate
+  
+                
+            - name: Setup pnpm (install pnpm on runner)
+              uses: pnpm/action-setup@v2
+              with:
+                version: 8.10.0
+                
+            # - name: Enable corepack & activate pnpm
+            #   run: |
+            #     corepack enable 
+            #     corepack prepare pnpm@8.10.0 --activate
+            #     pnpm -v
             
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
