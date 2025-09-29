@@ -1,21 +1,21 @@
-name: PR Checkpoint
-run-name: ${{ github.actor }} is creating PR
-on: 
-    pull_request:
+name: PR Checkpoint  # Name of the workflow that will appear in the Action Tab 
+run-name: ${{ github.actor }} is creating PR  # this one will show if you click the action tab in the left side. like list, basta ganon.
+on:  # ito trigger to kung kelan gagana like if you specify pr or in push but pwede both
+    pull_request:  
         types: [opened, synchronize, reopened]
     push: 
-        branches: 
+        branches:  # branch which this one is main 
             - main
-jobs:
+jobs:  # ito pang group ng jobs specify to kung ano mga gagawin
     type-check:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
+        runs-on: ubuntu-latest  # anong virtual server yung trip mong i run itong workflow
+        steps:  # steps na mga gagawin ng job
+            - name: Checkout   # name ng isang job 
+              uses: actions/checkout@v4  # anong actions version latest ata v4 wala pang v5 eh
 
-            - name: Setup Node (pnpm with cache)
+            - name: Setup Node (pnpm with cache)  
               uses: actions/setup-node@v4
-              with: 
+              with:   
                 node-version: '22'
                 cache: 'pnpm'
                 cache-dependency-path: '**/pnpm-locl.yaml'
@@ -29,9 +29,11 @@ jobs:
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
 
+              # typescript
             - name: Type check (Typescript)
               run: pnpm run typecheck
             
+              # checking the lint 
             - name: lint
               run: pnpm run lint
 
