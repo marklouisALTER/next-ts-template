@@ -41,8 +41,8 @@ jobs:  # ito pang group ng jobs specify to kung ano mga gagawin
 
               # checking the lint 
             - name: lint
-              run: pnpm -w run lint
+              run: pnpm run lint
 
             - name: Build
               if: ${{ success() }}
-              run: pnpm -w run build
+              run: pnpm run build
