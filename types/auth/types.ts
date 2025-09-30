@@ -11,7 +11,18 @@ export type RegisterType = {
     confirmPassword: string;
 }
 
-export type LoginServicesType = {
-    login: (credentials: LoginType) => Promise<boolean>;
+export type AuthServicesType = {
+    login: (credentials: LoginType) => Promise<SessionType>;
     register: (userInfo: RegisterType) => Promise<boolean>;
+    refreshSession: () => Promise<SessionType | null>;
+}
+
+export type SessionType = {
+    firstName: string, 
+    lastName: string,
+    email: string,
+}
+
+export type LoginResponse = {
+    user: SessionType,
 }

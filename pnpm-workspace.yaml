@@ -3,5 +3,8 @@ ignoredBuiltDependencies:
   - sharp
   - unrs-resolver
 packages:
-  - apps/*          # or whatever folders contain your apps
-  - packages/*      # or libs, services, etc.
+  - apps/*
+  - packages/*
+  - shared
+  - libs/*
+  - /*      # or libs, services, etc.
